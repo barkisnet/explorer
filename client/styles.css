@@ -122,12 +122,6 @@ a.navbar-brand .logo {
     margin-bottom: 0.5em;
 }
 
-#footer{
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    line-height: 1;
-}
-
 div#main, div#transaction, div#block{
     padding-top: 6rem;
     padding-bottom: 3.85rem;
