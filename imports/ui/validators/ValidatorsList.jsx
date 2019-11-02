@@ -78,7 +78,7 @@ export default class Validators extends Component{
         return <div id="validator-list">
             <Helmet>
                 <title>Barkis Validators List</title>
-                <meta name="description" content="Here is a list of Cosmos Validators" />
+                <meta name="description" content="Here is a list of Barkisnet Validators" />
             </Helmet>
             <Row>
                 <Col lg={3} xs={12}><h1 className="d-none d-lg-block">{title}</h1></Col>

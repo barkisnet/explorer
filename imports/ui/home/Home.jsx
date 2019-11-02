@@ -16,7 +16,7 @@ export default class Home extends Component{
         return <div id="home">
             <Helmet>
                 <title>Barkis Blockchain Explorer</title>
-                <meta name="description" content="Cosmos is a decentralized network of independent parallel blockchains, each powered by BFT consensus algorithms like Tendermint consensus." />
+                <meta name="description" content="Barkisnet is a decentralized network of independent parallel blockchains, each powered by BFT consensus algorithms like Tendermint consensus." />
             </Helmet>
             <Row>
                 <Col md={3} xs={12}><h1>{Meteor.settings.public.chainName}</h1></Col>
