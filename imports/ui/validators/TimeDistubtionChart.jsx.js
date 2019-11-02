@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import i18n from 'meteor/universe:i18n';
 import { CardHeader, CardBody, Card } from 'reactstrap';
 import moment from 'moment';
 import PChart from '../components/Chart.jsx';
@@ -11,7 +12,7 @@ const displayTimeRange = (time) => {
     let endTime = time.clone().add(BATCHSIZE, 'minute').format("h:mm");
     return `from ${startTime} to ${endTime} on ${time.format("D MMM YYYY")}`;
 }
-
+const T = i18n.createComponent();
 export default class TimeDistubtionChart extends Component{
     populateChartData() {
         let timeline = [];
@@ -182,13 +183,13 @@ export default class TimeDistubtionChart extends Component{
         let data = this.populateChartData();
         return [
             <Card key='timeilne'>
-                <CardHeader className='text-capitalize'>History Missed {this.props.type}</CardHeader>
+                <CardHeader className='text-capitalize'><T>validators.missedBlockStatisticRealtime</T></CardHeader>
                 <CardBody>
                     <PChart {...this.populateTimelineChart(data.timeline)} />
                 </CardBody>
             </Card>,
             <Card key='breakdown'>
-                <CardHeader className='text-capitalize'>Missed {this.props.type} By Time of Day</CardHeader>
+                <CardHeader className='text-capitalize'><T>validators.missedBlockStatisticByDay</T></CardHeader>
                 <CardBody>
                     <PChart {...this.populateBreakDownChart(data.breakdown)} />
                 </CardBody>
