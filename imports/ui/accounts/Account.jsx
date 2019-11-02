@@ -6,7 +6,7 @@ import LinkIcon from '../components/LinkIcon.jsx';
 import Delegations from './Delegations.jsx';
 import Unbondings from './Unbondings.jsx';
 import AccountTransactions from '../components/TransactionsContainer.js';
-import ChainStates from '../components/ChainStatesContainer.js'
+// import ChainStates from '../components/ChainStatesContainer.js'
 import { Helmet } from 'react-helmet';
 import { WithdrawButton, TransferButton } from '../ledger/LedgerActions.jsx';
 import i18n from 'meteor/universe:i18n';
@@ -152,11 +152,11 @@ export default class AccountDetails extends Component{
             return <div id="account">
                 <Helmet>
                     <title>Account Details of {this.state.address} on Barkis Blockchain</title>
-                    <meta name="description" content={"Account Details of "+this.state.address+" on Cosmos Hub"} />
+                    <meta name="description" content={"Account Details of "+this.state.address+" on Barkisnet"} />
                 </Helmet>
                 <Row>
                     <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>accounts.accountDetails</T></h1></Col>
-                    <Col md={9} xs={12} className="text-md-right"><ChainStates /></Col>
+                    {/*<Col md={9} xs={12} className="text-md-right"><ChainStates /></Col>*/}
                 </Row>
                 <Row>
                     <Col><h3 className="text-primary"><AccountCopy address={this.state.address} /></h3></Col>
