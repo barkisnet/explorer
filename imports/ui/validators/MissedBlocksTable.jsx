@@ -144,13 +144,13 @@ export default class MissedBlocksTable extends Component{
         return <Table className="missed-records-table">
             <thead><tr>
                 <th colSpan='2'><T>validators.blockHeight</T></th>
-                {grouped?null:<th className='text-capitalize'>{this.props.type}</th>}
-                <th><T>validators.blockHeight</T></th>
                 <th><T>validators.blockProposal</T></th>
-                <th><T>validators.blockTime</T></th>
-                <th><T>validators.missedSignCount</T><InfoIcon tooltipText='Missed ratio at the time of the block'/></th>
-                <th><T>validators.missedSignRatio</T><InfoIcon tooltipText='Number of voted validators out of all active validators'/></th>
-                <th><T>validators.voteRatio</T><InfoIcon tooltipText='Number of voted voting power out of all active voting power'/></th>
+                <th><T>validators.commitTime</T></th>
+                <th><T>validators.blockInterval</T></th>
+                <th><T>validators.missedSignCount</T></th>
+                <th><T>validators.missedSignRatio</T><InfoIcon tooltipText=<T>validators.missedSignRatioTip</T>/></th>
+                <th><T>validators.signRatio</T><InfoIcon tooltipText=<T>validators.signRatioTip</T>/></th>
+                <th><T>validators.voteRatio</T><InfoIcon tooltipText=<T>validators.voteRatioTip</T>/></th>
             </tr></thead>
             <tbody>
                 {aggregateData(data).map((record, index) => this.renderRow(record, index, grouped=grouped))}
