@@ -1,27 +1,27 @@
 {
     "public":{
-        "chainName": "Cosmos Testnet",
-        "chainId": "{Chain ID}",
+        "chainName": "Barkisnet",
+        "chainId": "{Add your chain id}",
         "gtm": "{Add your Google Tag Manager ID here}",
         "slashingWindow": 10000,
         "uptimeWindow": 250,
         "initialPageSize": 30,
-        "bech32PrefixAccAddr": "cosmos",
-        "bech32PrefixAccPub": "cosmospub",
-        "bech32PrefixValAddr": "cosmosvaloper",
-        "bech32PrefixValPub": "cosmosvaloperpub",
-        "bech32PrefixConsAddr": "cosmosvalcons",
-        "bech32PrefixConsPub": "cosmosvalconspub",
-        "stakingDenom": "ATOM",
-        "mintingDenom": "uatom",
+        "bech32PrefixAccAddr": "barkis",
+        "bech32PrefixAccPub": "barkispub",
+        "bech32PrefixValAddr": "barkisvaloper",
+        "bech32PrefixValPub": "barkisvaloperpub",
+        "bech32PrefixConsAddr": "barkisvalcons",
+        "bech32PrefixConsPub": "barkisvalconspub",
+        "stakingDenom": "barkis",
+        "mintingDenom": "barkis",
         "stakingFraction": 1000000,
         "gasPrice": 0.02,
-        "coingeckoId": "cosmos"
+        "coingeckoId": "barkis"
     },
-    "genesisFile": "{Replace the address of the genesis file of the chain}",
+    "genesisFile": "{Add your genesis file URI}",
     "remote":{
-        "rpc":"https://gaia-seeds.interblock.io",
-        "lcd":"https://gaia-seeds.interblock.io:1317"
+        "rpc":"http://localhost:26657",
+        "lcd":"http://localhost:1317"
     },
     "debug": {
         "startTimer": true,
@@ -39,4 +39,3 @@
         "delegationInterval": 900000
     }
 }
-
