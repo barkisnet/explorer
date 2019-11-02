@@ -152,7 +152,7 @@ export default class AccountDetails extends Component{
             return <div id="account">
                 <Helmet>
                     <title>Account Details of {this.state.address} on Barkis Blockchain</title>
-                    <meta name="description" content={"Account Details of "+this.state.address+" on Cosmos Hub"} />
+                    <meta name="description" content={"Account Details of "+this.state.address+" on Barkisnet"} />
                 </Helmet>
                 <Row>
                     <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>accounts.accountDetails</T></h1></Col>

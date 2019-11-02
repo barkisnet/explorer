@@ -28,7 +28,7 @@ export default class Proposals extends Component{
         return <div>
             <Helmet>
                 <title>Governance Proposals on Barkis Blockchain</title>
-                <meta name="description" content="Cosmos Hub incorporates on-chain governance. Come to see how on-chain governance can be achieved on The Big Dipper." />
+                <meta name="description" content="Barkisnet incorporates on-chain governance. Come to see how on-chain governance can be achieved on The Big Dipper." />
             </Helmet>
             <Row>
                 <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>proposals.proposals</T></h1></Col>
