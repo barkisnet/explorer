@@ -24,7 +24,7 @@ common:
     retry: '重試'
 navbar:
     siteName: 'Barkisnet浏览器'
-    version: 'beta'
+    version: '1.0.0'
     validators: '驗證人'
     blocks: '區塊'
     transactions: '交易'
