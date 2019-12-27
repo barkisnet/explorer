@@ -88,7 +88,7 @@ export default class Activites extends Component {
             return <MsgType type={msg.type} />
 
         case "cosmos-sdk/IssueMsg":
-            return <MsgType type={msg.type} />
+            return <p><MsgType type={msg.type} /> <Account address={msg.value.from} /> <T>messageTypes.IssueToken</T> <em className="text-warning">{msg.value.total_supply}</em> <em className="text-warning">{msg.value.symbol}</em> <T>common.fullStop</T> </p>
         case "cosmos-sdk/MintMsg":
             return <MsgType type={msg.type} />
 
