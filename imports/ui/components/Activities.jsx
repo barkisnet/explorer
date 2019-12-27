@@ -87,6 +87,11 @@ export default class Activites extends Component {
         case "cosmos-sdk/IBCReceiveMsg":
             return <MsgType type={msg.type} />
 
+        case "cosmos-sdk/IssueMsg":
+            return <MsgType type={msg.type} />
+        case "cosmos-sdk/MintMsg":
+            return <MsgType type={msg.type} />
+
         default:
             return <div>{JSON.stringify(msg.value)}</div>
         }
