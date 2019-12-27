@@ -233,3 +233,5 @@ messageTypes:
     unjail: '赦免'
     IBCTransfer: 'IBC Transfer'
     IBCReceive: 'IBC Receive'
+    IssueToken: '發行'
+    MintToken: '增發'

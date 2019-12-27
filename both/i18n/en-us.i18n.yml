@@ -233,3 +233,5 @@ messageTypes:
     unjail: 'Unjail'
     IBCTransfer: 'IBC Transfer'
     IBCReceive: 'IBC Receive'
+    IssueToken: 'issue token'
+    MintToken: 'mint token'
