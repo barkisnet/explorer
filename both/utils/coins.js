@@ -16,6 +16,7 @@ var autoformat = (value) => {
 }
 
 export default class Coin {
+    static NativeTokenDenom = 'ubarkis';
     static StakingDenom = Meteor.settings.public.stakingDenom.toLowerCase();
     static MintingDenom = Meteor.settings.public.mintingDenom.toLowerCase();
     static StakingFraction = Number(Meteor.settings.public.stakingFraction);
@@ -26,11 +27,13 @@ export default class Coin {
             ({amount, denom} = amount)
         if (!denom || denom.toLowerCase() === Coin.MintingDenom) {
             this._amount = Number(amount);
+            this._denom = Coin.MintingDenom;
         } else if (denom.toLowerCase() === Coin.StakingDenom) {
             this._amount = Number(amount) * Coin.StakingFraction;
-        }
-        else {
-            throw Error(`unsupported denom ${denom}`);
+            this._denom = Coin.StakingDenom;
+        } else {
+            this._amount = Number(amount);
+            this._denom = denom;
         }
     }
 
@@ -43,12 +46,15 @@ export default class Coin {
     }
 
     toString (precision) {
+        if (this._denom && this._denom !== Coin.NativeTokenDenom) {
+            return `${numbro(this.amount).format('0,0')} ${this._denom}`;
+        }
         // default to display in mint denom if it has more than 4 decimal places
         let minStake = Coin.StakingFraction/(precision?Math.pow(10, precision):10000)
         if (this.amount < minStake) {
             return `${numbro(this.amount).format('0,0')} ${Coin.MintingDenom}`;
         } else {
-            return `${precision?numbro(this.stakingAmount).format('0,0.' + '0'.repeat(precision)):autoformat(this.stakingAmount)} ${Coin.StakingDenom.toUpperCase()}`
+            return `${precision?numbro(this.stakingAmount).format('0,0.' + '0'.repeat(precision)):autoformat(this.stakingAmount)} ${Coin.StakingDenom.toLowerCase()}`
         }
     }
 
