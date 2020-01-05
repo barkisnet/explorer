@@ -18,19 +18,15 @@ var autoformat = (value) => {
 export default class Coin {
     static NativeTokenDenom = 'ubarkis';
     static StakingDenom = Meteor.settings.public.stakingDenom.toLowerCase();
-    static MintingDenom = Meteor.settings.public.mintingDenom.toLowerCase();
     static StakingFraction = Number(Meteor.settings.public.stakingFraction);
     static MinStake = 1 / Number(Meteor.settings.public.stakingFraction);
 
     constructor(amount, denom=null) {
         if (typeof amount === 'object')
             ({amount, denom} = amount)
-        if (!denom || denom.toLowerCase() === Coin.MintingDenom) {
+        if (!denom || denom.toLowerCase() === Coin.StakingDenom) {
             this._amount = Number(amount);
-            this._denom = Coin.MintingDenom;
-        } else if (denom.toLowerCase() === Coin.StakingDenom) {
-            this._amount = Number(amount) * Coin.StakingFraction;
-            this._denom = Coin.StakingDenom;
+            this._denom = Coin.NativeTokenDenom;
         } else {
             this._amount = Number(amount);
             this._denom = denom;
@@ -39,6 +35,10 @@ export default class Coin {
 
     get amount () {
         return this._amount;
+    }
+
+    get nativeTokenDenom () {
+        return Coin.NativeTokenDenom;
     }
 
     get stakingAmount () {
@@ -52,18 +52,10 @@ export default class Coin {
         // default to display in mint denom if it has more than 4 decimal places
         let minStake = Coin.StakingFraction/(precision?Math.pow(10, precision):10000)
         if (this.amount < minStake) {
-            return `${numbro(this.amount).format('0,0')} ${Coin.MintingDenom}`;
+            return `${numbro(this.amount).format('0,0')} ${Coin.NativeTokenDenom.toLowerCase()}`;
         } else {
             return `${precision?numbro(this.stakingAmount).format('0,0.' + '0'.repeat(precision)):autoformat(this.stakingAmount)} ${Coin.StakingDenom.toLowerCase()}`
         }
-    }
-
-    mintString (formatter) {
-        let amount = this.amount
-        if (formatter) {
-            amount = numbro(amount).format(formatter)
-        }
-        return `${amount} ${Coin.MintingDenom}`;
     }
 
     stakeString (formatter) {
@@ -71,6 +63,6 @@ export default class Coin {
         if (formatter) {
             amount = numbro(amount).format(formatter)
         }
-        return `${amount} ${Coin.StakingDenom.toUpperCase()}`;
+        return `${amount} ${Coin.StakingDenom.toLowerCase()}`;
     }
 }

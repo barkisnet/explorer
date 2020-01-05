@@ -46,8 +46,8 @@ Meteor.methods({
             if (available.statusCode == 200){
                 // console.log(JSON.parse(available.content))
                 balance.available = JSON.parse(available.content).result;
-                if (balance.available && balance.available.length > 0)
-                    balance.available = balance.available[0];
+                //if (balance.available && balance.available.length > 0)
+                //    balance.available = balance.available[0];
             }
         }
         catch (e){
