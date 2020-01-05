@@ -214,7 +214,7 @@ activities:
     to: 'to'
     from: 'from'
     mintable: 'mintable'
-    notmintable: 'not mintable'
+    unmintable: 'unmintable'
     operatingAt: 'operating at'
     withMoniker: 'with moniker'
     withTitle: 'with title'

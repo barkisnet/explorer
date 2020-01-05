@@ -214,7 +214,7 @@ activities:
     to: '到'
     from: '從'
     mintable: '可增發'
-    notmintable: '不可增發'
+    unmintable: '不可增發'
     operatingAt: '操作地止為'
     withMoniker: '而驗證人代號為'
     withTitle: '治理提案主題為'

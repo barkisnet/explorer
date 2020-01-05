@@ -57,6 +57,16 @@ let errors = {
         103: "Validator Not Jailed",
         104: "Missing Self Delegation",
         105: "Self Delegation Too Low"
+    },
+    "asset": {
+        101: "Invalid token name",
+        102: "Invalid token symbol",
+        103: "Invalid token total supply",
+        104: "Invalid token decimal",
+        105: "Invalid mint amount",
+        106: "Invalid token description",
+        107: "Can't mint an unmintable token",
+        108: "Unauthorized mint operation"
     }
 }
 
