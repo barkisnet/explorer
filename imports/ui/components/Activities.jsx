@@ -40,6 +40,7 @@ export default class Activites extends Component {
     render(){
         // console.log(this.props);
         let msg = this.props.msg;
+        let txhash = this.props.txhash;
         switch (msg.type){
         // bank
         case "cosmos-sdk/MsgSend":
@@ -88,7 +89,7 @@ export default class Activites extends Component {
             return <MsgType type={msg.type} />
 
         case "cosmos-sdk/IssueMsg":
-            return <p><MsgType type={msg.type} /> <Account address={msg.value.from} /> <T>messageTypes.IssueToken</T> <em className="text-warning">{msg.value.total_supply}</em> <em className="text-warning">{msg.value.symbol}</em> <T>common.fullStop</T> </p>
+            return <p><MsgType type={msg.type} /> <Account address={msg.value.from} /> <T>messageTypes.IssueToken</T> <em className="text-warning">{msg.value.total_supply}</em> <em className="text-warning">{msg.value.symbol+"_"+txhash.substr(0, 3).toLowerCase()}</em> <T>common.comma</T> <em className="text-warning">decimal {msg.value.decimal}</em> <T>common.comma</T> {(msg.value.mintable)?<T>activities.mintable</T>:<T>activities.notmintable</T>} <T>common.fullStop</T> </p>
         case "cosmos-sdk/MintMsg":
             return <MsgType type={msg.type} />
 
