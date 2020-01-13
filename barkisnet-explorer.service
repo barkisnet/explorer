@@ -22,3 +22,4 @@ RemainAfterExit=no
 SuccessExitStatus=5 6
 ExecStart=/etc/init.d/barkisnet-explorer start
 ExecStop=/etc/init.d/barkisnet-explorer stop
+Environment=ROOT_URL={EXPLORER_URL}
