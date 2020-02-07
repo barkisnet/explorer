@@ -21,6 +21,7 @@ export default class AccountDetails extends Component{
             loading: true,
             accountExists: false,
             available: 0,
+            allBalance: '',
             delegated: 0,
             unbonding: 0,
             rewards: 0,
@@ -56,10 +57,21 @@ export default class AccountDetails extends Component{
             if (result){
                 // console.log(result);
                 if (result.available){
+                    let nativeTokenAmount = Number(0);
+                    let tokenList = [];
+                    if (result.available) {
+                        for(let i = 0; i < result.available.length; i++) {
+                            if (result.available[i].denom === new Coin(0).nativeTokenDenom) {
+                                nativeTokenAmount = Number(result.available[i].amount);
+                            }
+                            tokenList.push(result.available[i])
+                        }
+                    }
+                    this.allBalance = tokenList.map((coin) => new Coin(coin.amount, coin.denom).toString(4)).join(', ');
                     this.setState({
-                        available: parseFloat(result.available.amount),
-                        total: parseFloat(this.state.total)+parseFloat(result.available.amount)
-                    })
+                        available: parseFloat(nativeTokenAmount.toString()),
+                        total: parseFloat(this.state.total)+parseFloat(nativeTokenAmount.toString()),
+                    });
                 }
 
                 this.setState({delegations: result.delegations || []})
@@ -121,6 +133,7 @@ export default class AccountDetails extends Component{
                 loading: true,
                 accountExists: false,
                 available: 0,
+                allBalance: '',
                 delegated: 0,
                 unbonding: 0,
                 commission: 0,
@@ -183,7 +196,7 @@ export default class AccountDetails extends Component{
                                 <Col md={6} lg={8}>
                                     <Row>
                                         <Col xs={4} className="label text-nowrap"><div className="available infinity" /><T>accounts.available</T></Col>
-                                        <Col xs={8} className="value text-right">{new Coin(this.state.available).toString(4)}</Col>
+                                        <Col xs={8} className="value text-right">{this.allBalance}</Col>
                                     </Row>
                                     <Row>
                                         <Col xs={4} className="label text-nowrap"><div className="delegated infinity" /><T>accounts.delegated</T></Col>

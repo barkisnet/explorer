@@ -40,11 +40,12 @@ export default class Activites extends Component {
     render(){
         // console.log(this.props);
         let msg = this.props.msg;
+        let txhash = this.props.txhash;
         switch (msg.type){
         // bank
         case "cosmos-sdk/MsgSend":
             let amount = '';
-            amount = msg.value.amount.map((coin) => new Coin(coin.amount).toString()).join(', ')
+            amount = msg.value.amount.map((coin) => new Coin(coin.amount, coin.denom).toString()).join(', ')
             return <p><Account address={msg.value.from_address} /> {(this.props.invalid)?<T>activities.failedTo</T>:''}<MsgType type={msg.type} /> <em className="text-success">{amount}</em> <T>activities.to</T> <span className="address"><Account address={msg.value.to_address} /></span><T>common.fullStop</T></p>
         case "cosmos-sdk/MsgMultiSend":
             return <MultiSend msg={msg} />
@@ -86,6 +87,11 @@ export default class Activites extends Component {
             return <MsgType type={msg.type} />
         case "cosmos-sdk/IBCReceiveMsg":
             return <MsgType type={msg.type} />
+
+        case "cosmos-sdk/IssueMsg":
+            return <p><MsgType type={msg.type} /> <Account address={msg.value.from} /> <T>messageTypes.IssueToken</T> <em className="text-warning">{msg.value.total_supply}</em> <em className="text-warning">{msg.value.symbol+"_"+txhash.substr(0, 3).toLowerCase()}</em> <T>common.comma</T> <em className="text-warning">decimal {msg.value.decimal}</em> <T>common.comma</T> {(msg.value.mintable)?<T>activities.mintable</T>:<T>activities.unmintable</T>} <T>common.fullStop</T> </p>
+        case "cosmos-sdk/MintMsg":
+            return <p><MsgType type={msg.type} /> <Account address={msg.value.from} /> <T>messageTypes.MintToken</T> <em className="text-warning">{msg.value.amount}</em> <em className="text-warning">{msg.value.symbol}</em> </p>
 
         default:
             return <div>{JSON.stringify(msg.value)}</div>
