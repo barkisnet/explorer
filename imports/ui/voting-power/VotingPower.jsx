@@ -4,6 +4,7 @@ import { Row, Col, Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Progress, Spinner } from 'reactstrap';
 import numbro from 'numbro';
 import i18n from 'meteor/universe:i18n';
+import SentryBoundary from '../components/SentryBoundary.jsx';
 
 const T = i18n.createComponent();
 
@@ -76,7 +77,7 @@ export default class VotingPower extends Component{
                 }
             });
 
-            $("#voting-power-chart").height(16*data.length);
+            $("#voting-power-chart").height(40*(data.length+1));
         }
     }
 
@@ -90,7 +91,7 @@ export default class VotingPower extends Component{
                     <Card>
                         <div className="card-header"><T>common.votingPower</T></div>
                         <CardBody id="voting-power-chart">
-                            <HorizontalBar data={this.state.data} options={this.state.options} />
+                            <SentryBoundary><HorizontalBar data={this.state.data} options={this.state.options} /></SentryBoundary>
                         </CardBody>
                     </Card>
                 );   

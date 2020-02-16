@@ -93,9 +93,10 @@ export default class Proposal extends Component{
                     }
                     else{
                         let totalVotes = 0;
-                        for (let i in this.props.proposal.final_tally_result){
-                            totalVotes += parseInt(this.props.proposal.final_tally_result[i]);
-                        }
+                        totalVotes += parseInt(this.props.proposal.final_tally_result.yes);
+                        totalVotes += parseInt(this.props.proposal.final_tally_result.abstain);
+                        totalVotes += parseInt(this.props.proposal.final_tally_result.no);
+                        totalVotes += parseInt(this.props.proposal.final_tally_result.no_with_veto);
 
                         this.setState({
                             tally: this.props.proposal.final_tally_result,
