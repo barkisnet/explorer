@@ -138,7 +138,7 @@ Meteor.methods({
 
             let validatorSet = {}
             // get latest validator candidate information
-            url = LCD+'/staking/validators';
+            url = LCD+'/staking/validators?status=bonded&page=1&limit=200';
 
             try{
                 response = HTTP.get(url);
@@ -148,7 +148,7 @@ Meteor.methods({
                 console.log(e);
             }
 
-            url = LCD+'/staking/validators?status=unbonding';
+            url = LCD+'/staking/validators?status=unbonding&page=1&limit=200';
 
             try{
                 response = HTTP.get(url);
@@ -158,7 +158,7 @@ Meteor.methods({
                 console.log(e);
             }
 
-            url = LCD+'/staking/validators?status=unbonded';
+            url = LCD+'/staking/validators?status=unbonded&page=1&limit=200';
 
             try{
                 response = HTTP.get(url);
@@ -354,7 +354,7 @@ Meteor.methods({
 
                                 let valExist = Validators.findOne({"pub_key.value":validator.pub_key.value});
                                 if (!valExist){
-                                    console.log(`validator pub_key ${validator.address} ${validator.pub_key.value} not in db`);
+                                    console.log(`insert new validator, pub_key ${validator.address} ${validator.pub_key.value} not in db`);
                                     // let command = Meteor.settings.bin.gaiadebug+" pubkey "+validator.pub_key.value;
                                     // console.log(command);
                                     // let tempVal = validator;
@@ -418,6 +418,7 @@ Meteor.methods({
                                     // });
                                 }
                                 else{
+                                    console.log("update an old validator")
                                     let validatorData = validatorSet[valExist.consensus_pubkey]
                                     if (validatorData){
                                         if (validatorData.description && (!valExist.description || validatorData.description.identity !== valExist.description.identity))
