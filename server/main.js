@@ -115,7 +115,7 @@ aggregateMinutely = () =>{
             console.log("aggregate minutely block time ok: "+result)
         }
     });
-
+/*
     Meteor.call('coinStats.getCoinStats', (error, result) => {
         if (error){
             console.log("get coin stats error: "+error);
@@ -124,6 +124,7 @@ aggregateMinutely = () =>{
             console.log("get coin stats ok: "+result)
         }
     });
+ */
 }
 
 aggregateHourly = () =>{
