@@ -30,13 +30,14 @@ export default class TopValidators extends Component{
                                 <Avatar moniker={validator.description.moniker} profileUrl={validator.profile_url} address={validator.address} list={true} />
                                 {validator.description.moniker}
                             </Link></td>
-                            <td className="voting-power">{numbro(validator.voting_power).format('0,0')}</td>
+                            <td className="validatorCommission">{validator.commission&&validator.commission.commission_rates?numbro(validator.commission.commission_rates.rate*100).format('0.00')+"%":''}</td>
+                            <td className="validator-voting-power">{numbro(validator.voting_power).format('0,0')}</td>
                             <td><Progress animated value={validator.uptime}>{validator.uptime?validator.uptime.toFixed(2):0}%</Progress></td>
                         </tr>
                     })
                 })
             }
-        },5000);
+        },3000);
     }
 
     componentWillUnmount(){
@@ -69,7 +70,8 @@ export default class TopValidators extends Component{
                             <thead>
                                 <tr>
                                     <th className="moniker"><i className="material-icons">perm_contact_calendar</i><span className="d-none d-sm-inline"><T>validators.moniker</T></span></th>
-                                    <th className="voting-power"><i className="material-icons">power</i><span className="d-none d-sm-inline"><T>common.votingPower</T></span></th>
+                                    <th className="validator-commission"><i className="material-icons">rate_review</i><span className="d-none d-sm-inline"><T>validators.commission</T></span></th>
+                                    <th className="validator-voting-power"><i className="material-icons">power</i><span className="d-none d-sm-inline"><T>common.votingPower</T></span></th>
                                     <th className="uptime"><i className="material-icons">flash_on</i><span className="d-none d-sm-inline"><T>validators.uptime</T></span></th>
                                 </tr>
                             </thead>

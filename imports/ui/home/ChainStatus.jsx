@@ -152,7 +152,7 @@ export default class ChainStatus extends React.Component {
             if (this.props.statusExist && this.props.status.prevotes){
                 return(
                     <Row className="status text-center">
-                        <Col lg={3} md={6}>
+                        <Col lg={6} md={6}>
                             <Card body>
                                 <CardTitle><T>chainStatus.latestHeight</T></CardTitle>
                                 <CardText>
@@ -161,7 +161,7 @@ export default class ChainStatus extends React.Component {
                                 </CardText>
                             </Card>
                         </Col>
-                        <Col lg={3} md={6}>
+                        <Col lg={6} md={6}>
                             <Card body>
                                 <UncontrolledDropdown size="sm" className="more">
                                     <DropdownToggle>
@@ -180,13 +180,13 @@ export default class ChainStatus extends React.Component {
                                 </CardText>
                             </Card>
                         </Col>
-                        <Col lg={3} md={6}>
+                        <Col lg={6} md={6}>
                             <Card body>
                                 <CardTitle><T>chainStatus.activeValidators</T></CardTitle>
                                 <CardText><span className="display-4 value text-primary">{this.state.numValidators}</span><T totalValidators={this.state.totalNumValidators}>chainStatus.outOfValidators</T></CardText>
                             </Card>
                         </Col>
-                        <Col lg={3} md={6}>
+                        <Col lg={6} md={6}>
                             <Card body>
                                 <UncontrolledDropdown size="sm" className="more">
                                     <DropdownToggle>

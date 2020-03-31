@@ -17,7 +17,7 @@ export default class BlocksTable extends Component {
         super(props);
         this.state = {
             limit: Meteor.settings.public.initialPageSize,
-            sidebarOpen: (props.location.pathname.split("/blocks/").length == 2)
+            sidebarOpen: (false)
         };
 
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -54,13 +54,11 @@ export default class BlocksTable extends Component {
         }
     };
 
-    componentDidUpdate(prevProps){
-        if (this.props.location.pathname != prevProps.location.pathname){
-            this.setState({
-                sidebarOpen: (this.props.location.pathname.split("/blocks/").length == 2)
-            })
-        }
-    }
+    // componentDidUpdate(prevProps){
+    //     this.setState({
+    //         sidebarOpen: (props.location.pathname.split("/blocks/").length == 2)
+    //     })
+    // }
 
     onSetSidebarOpen(open) {
         // console.log(open);
@@ -76,12 +74,12 @@ export default class BlocksTable extends Component {
 
     render(){
         return <div>
-            <Helmet>
-                <title>Latest Blocks on Barkis Blockchain</title>
-                <meta name="description" content="Latest blocks committed by validators on Barkisnet" />
-            </Helmet>
+            {/*<Helmet>*/}
+            {/*    <title>Latest Blocks on Barkis Blockchain</title>*/}
+            {/*    <meta name="description" content="Latest blocks committed by validators on Barkisnet" />*/}
+            {/*</Helmet>*/}
             <Row>
-                <Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>blocks.latestBlocks</T></h1></Col>
+                {/*<Col md={3} xs={12}><h1 className="d-none d-lg-block"><T>blocks.latestBlocks</T></h1></Col>*/}
                 {/*<Col md={9} xs={12} className="text-md-right"><ChainStates /></Col>*/}
             </Row>
             <Switch>
