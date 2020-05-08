@@ -9,7 +9,7 @@ const fetchFromUrl = (url) => {
         };
     }
     catch (e){
-        console.log(e);
+        // console.log(e);
     }
 }
 
@@ -63,7 +63,7 @@ Meteor.methods({
             }
         }
         catch (e){
-            console.log(e);
+            // console.log(e);
         }
         // get unbonding
         url = LCD + '/staking/delegators/'+address+'/unbonding_delegations';
@@ -74,7 +74,7 @@ Meteor.methods({
             }
         }
         catch (e){
-            console.log(e);
+            // console.log(e);
         }
 
         // get rewards
@@ -86,7 +86,7 @@ Meteor.methods({
             }
         }
         catch (e){
-            console.log(e);
+            // console.log(e);
         }
 
         // get commission
@@ -159,7 +159,7 @@ Meteor.methods({
             };
         }
         catch (e){
-            console.log(e);
+            // console.log(e);
         }
     },
     'accounts.getAllUnbondings'(address){
@@ -173,7 +173,7 @@ Meteor.methods({
             };
         }
         catch (e){
-            console.log(e);
+            // console.log(e);
         }
     },
     'accounts.getAllRedelegations'(address, validator){
