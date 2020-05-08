@@ -43,7 +43,7 @@ getValidatorProfileUrl = (identity) => {
             let them = response.data.them
             return them && them.length && them[0].pictures && them[0].pictures.primary && them[0].pictures.primary.url;
         } else {
-            console.log(JSON.stringify(response))
+            // console.log(JSON.stringify(response))
         }
     } else if (identity.indexOf("keybase.io/team/")>0){
         let teamPage = HTTP.get(identity);
@@ -51,7 +51,7 @@ getValidatorProfileUrl = (identity) => {
             let page = cheerio.load(teamPage.content);
             return page(".kb-main-card img").attr('src');
         } else {
-            console.log(JSON.stringify(teamPage))
+            // console.log(JSON.stringify(teamPage))
         }
     }
 }
@@ -131,7 +131,7 @@ Meteor.methods({
         // console.log(until);
         // get the current height in db
         let curr = Meteor.call('blocks.getCurrentHeight');
-        console.log(curr);
+        // console.log(curr);
         // loop if there's update in db
         if (until > curr) {
             SYNCING = true;
@@ -168,7 +168,7 @@ Meteor.methods({
                 console.log(e);
             }
             let totalValidators = Object.keys(validatorSet).length;
-            console.log("all validators: "+ totalValidators);
+            // console.log("all validators: "+ totalValidators);
             for (let height = curr+1 ; height <= until ; height++) {
                 let startBlockTime = new Date();
                 // add timeout here? and outside this loop (for catched up and keep fetching)?
@@ -176,7 +176,7 @@ Meteor.methods({
                 let url = RPC+'/block?height=' + height;
                 let analyticsData = {};
 
-                console.log(url);
+                // console.log(url);
                 try{
                     const bulkValidators = Validators.rawCollection().initializeUnorderedBulkOp();
                     const bulkValidatorRecords = ValidatorRecords.rawCollection().initializeUnorderedBulkOp();
@@ -235,14 +235,14 @@ Meteor.methods({
                         analyticsData.height = height;
 
                         let endGetHeightTime = new Date();
-                        console.log("Get height time: "+((endGetHeightTime-startGetHeightTime)/1000)+"seconds.");
+                        // console.log("Get height time: "+((endGetHeightTime-startGetHeightTime)/1000)+"seconds.");
 
 
                         let startGetValidatorsTime = new Date();
                         // update chain status
                         url = RPC+'/validators?height='+height;
                         response = HTTP.get(url);
-                        console.log(url);
+                        // console.log(url);
                         let validators = JSON.parse(response.content);
                         validators.result.block_height = parseInt(validators.result.block_height);
                         ValidatorSets.insert(validators.result);
@@ -251,7 +251,7 @@ Meteor.methods({
                         let startBlockInsertTime = new Date();
                         Blockscon.insert(blockData);
                         let endBlockInsertTime = new Date();
-                        console.log("Block insert time: "+((endBlockInsertTime-startBlockInsertTime)/1000)+"seconds.");
+                        // console.log("Block insert time: "+((endBlockInsertTime-startBlockInsertTime)/1000)+"seconds.");
 
                         // store valdiators exist records
                         let existingValidators = Validators.find({address:{$exists:true}}).fetch();
@@ -345,7 +345,7 @@ Meteor.methods({
                         let startFindValidatorsNameTime = new Date();
                         if (validators.result){
                             // validators are all the validators in the current height
-                            console.log("validatorSet size: "+validators.result.validators.length);
+                            // console.log("validatorSet size: "+validators.result.validators.length);
                             for (v in validators.result.validators){
                                 // Validators.insert(validators.result.validators[v]);
                                 let validator = validators.result.validators[v];
@@ -510,7 +510,7 @@ Meteor.methods({
                         // check if there's any validator not in db 14400 blocks(~1 day)
                         if (height % 14400 == 0){
                             try {
-                                console.log('Checking all validators against db...')
+                                // console.log('Checking all validators against db...')
                                 let dbValidators = {}
                                 Validators.find({}, {fields: {consensus_pubkey: 1, status: 1}}
                                     ).forEach((v) => dbValidators[v.consensus_pubkey] = v.status)
@@ -521,7 +521,7 @@ Meteor.methods({
                                         return
 
                                     if (dbValidators[conPubKey] == undefined) {
-                                        console.log(`validator with consensus_pubkey ${conPubKey} not in db`);
+                                        // console.log(`validator with consensus_pubkey ${conPubKey} not in db`);
 
                                         validatorData.pub_key = {
                                             "type" : "tendermint/PubKeyEd25519",
@@ -532,7 +532,7 @@ Meteor.methods({
 
                                         validatorData.accpub = Meteor.call('pubkeyToBech32', validatorData.pub_key, Meteor.settings.public.bech32PrefixAccPub);
                                         validatorData.operator_pubkey = Meteor.call('pubkeyToBech32', validatorData.pub_key, Meteor.settings.public.bech32PrefixValPub);
-                                        console.log(JSON.stringify(validatorData))
+                                        // console.log(JSON.stringify(validatorData))
                                         bulkValidators.find({consensus_pubkey: conPubKey}).upsert().updateOne({$set:validatorData});
                                     } else if (dbValidators[conPubKey] == 2) {
                                         bulkValidators.find({consensus_pubkey: conPubKey}).upsert().updateOne({$set:validatorData});
@@ -545,7 +545,7 @@ Meteor.methods({
 
                         // fetching keybase every 14400 blocks(~1 day)
                         if (height % 14400 == 1){
-                            console.log('Fetching keybase...')
+                            // console.log('Fetching keybase...')
                             Validators.find({}).forEach((validator) => {
                                 try {
                                     let profileUrl =  getValidatorProfileUrl(validator.description.identity)
@@ -560,13 +560,13 @@ Meteor.methods({
                         }
 
                         let endFindValidatorsNameTime = new Date();
-                        console.log("Get validators name time: "+((endFindValidatorsNameTime-startFindValidatorsNameTime)/1000)+"seconds.");
+                        // console.log("Get validators name time: "+((endFindValidatorsNameTime-startFindValidatorsNameTime)/1000)+"seconds.");
 
                         // record for analytics
                         let startAnayticsInsertTime = new Date();
                         Analytics.insert(analyticsData);
                         let endAnalyticsInsertTime = new Date();
-                        console.log("Analytics insert time: "+((endAnalyticsInsertTime-startAnayticsInsertTime)/1000)+"seconds.");
+                        // console.log("Analytics insert time: "+((endAnalyticsInsertTime-startAnayticsInsertTime)/1000)+"seconds.");
 
                         let startVUpTime = new Date();
                         if (bulkValidators.length > 0){
@@ -582,7 +582,7 @@ Meteor.methods({
                         }
 
                         let endVUpTime = new Date();
-                        console.log("Validator update time: "+((endVUpTime-startVUpTime)/1000)+"seconds.");
+                        // console.log("Validator update time: "+((endVUpTime-startVUpTime)/1000)+"seconds.");
 
                         let startVRTime = new Date();
                         if (bulkValidatorRecords.length > 0){
@@ -594,7 +594,7 @@ Meteor.methods({
                         }
 
                         let endVRTime = new Date();
-                        console.log("Validator records update time: "+((endVRTime-startVRTime)/1000)+"seconds.");
+                        // console.log("Validator records update time: "+((endVRTime-startVRTime)/1000)+"seconds.");
 
                         if (bulkVPHistory.length > 0){
                             bulkVPHistory.execute((err, result) => {
@@ -615,7 +615,7 @@ Meteor.methods({
                         // calculate voting power distribution every 60 blocks ~ 5mins
 
                         if (height % 60 == 1){
-                            console.log("===== calculate voting power distribution =====");
+                            // console.log("===== calculate voting power distribution =====");
                             let activeValidators = Validators.find({status:2,jailed:false},{sort:{voting_power:-1}}).fetch();
                             let numTopTwenty = Math.ceil(activeValidators.length*0.2);
                             let numBottomEighty = activeValidators.length - numTopTwenty;
@@ -676,7 +676,7 @@ Meteor.methods({
                     return "Stopped";
                 }
                 let endBlockTime = new Date();
-                console.log("This block used: "+((endBlockTime-startBlockTime)/1000)+"seconds.");
+                // console.log("This block used: "+((endBlockTime-startBlockTime)/1000)+"seconds.");
             }
             SYNCING = false;
             Chain.update({chainId:Meteor.settings.public.chainId}, {$set:{lastBlocksSyncedTime:new Date(), totalValidators:totalValidators}});
