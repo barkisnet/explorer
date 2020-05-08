@@ -124,7 +124,7 @@ Meteor.methods({
     'blocks.blocksUpdate': function() {
         if (SYNCING)
             return "Syncing...";
-        else console.log("start to sync");
+        // else console.log("start to sync");
         // Meteor.clearInterval(Meteor.timerHandle);
         // get the latest height
         let until = Meteor.call('blocks.getLatestHeight');
@@ -326,7 +326,7 @@ Meteor.methods({
                         }
 
                         let endGetValidatorsTime = new Date();
-                        console.log("Get height validators time: "+((endGetValidatorsTime-startGetValidatorsTime)/1000)+"seconds.");
+                        // console.log("Get height validators time: "+((endGetValidatorsTime-startGetValidatorsTime)/1000)+"seconds.");
 
                         Chain.update({chainId:block.block_meta.header.chain_id}, {$set:{lastSyncedTime:blockData.time, blockTime:blockTime}});
 
@@ -418,7 +418,7 @@ Meteor.methods({
                                     // });
                                 }
                                 else{
-                                    console.log("update an old validator")
+                                    // console.log("update an old validator")
                                     let validatorData = validatorSet[valExist.consensus_pubkey]
                                     if (validatorData){
                                         if (validatorData.description && (!valExist.description || validatorData.description.identity !== valExist.description.identity))
