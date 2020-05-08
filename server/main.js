@@ -27,7 +27,7 @@ updateChainStatus = () => {
             console.log("updateStatus: "+error);
         }
         else{
-            // console.log("updateStatus: "+result);
+            console.log("updateStatus: "+result);
         }
     })
 }
