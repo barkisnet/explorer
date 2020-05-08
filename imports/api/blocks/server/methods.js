@@ -145,7 +145,7 @@ Meteor.methods({
                 JSON.parse(response.content).result.forEach((validator) => validatorSet[validator.consensus_pubkey] = validator);
             }
             catch(e){
-                console.log(e);
+                // console.log(e);
             }
 
             url = LCD+'/staking/validators?status=unbonding&page=1&limit=200';
@@ -155,7 +155,7 @@ Meteor.methods({
                 JSON.parse(response.content).result.forEach((validator) => validatorSet[validator.consensus_pubkey] = validator)
             }
             catch(e){
-                console.log(e);
+                // console.log(e);
             }
 
             url = LCD+'/staking/validators?status=unbonded&page=1&limit=200';
@@ -165,7 +165,7 @@ Meteor.methods({
                 JSON.parse(response.content).result.forEach((validator) => validatorSet[validator.consensus_pubkey] = validator)
             }
             catch(e){
-                console.log(e);
+                // console.log(e);
             }
             let totalValidators = Object.keys(validatorSet).length;
             // console.log("all validators: "+ totalValidators);
@@ -216,7 +216,7 @@ Meteor.methods({
                             for (t in block.block.data.txs){
                                 Meteor.call('Transactions.index', sha256(Buffer.from(block.block.data.txs[t], 'base64')), blockData.time, (err, result) => {
                                     if (err){
-                                        console.log(err);
+                                        // console.log(err);
                                     }
                                 });
                             }
@@ -539,7 +539,7 @@ Meteor.methods({
                                     }
                                 })
                             } catch (e){
-                                console.log(e)
+                                // console.log(e)
                             }
                         }
 
@@ -554,7 +554,7 @@ Meteor.methods({
                                             ).upsert().updateOne({$set:{'profile_url':profileUrl}});
                                     }
                                 } catch (e) {
-                                    console.log(e)
+                                    // console.log(e)
                                 }
                             })
                         }
@@ -573,7 +573,7 @@ Meteor.methods({
                             // console.log(bulkValidators.length);
                             bulkValidators.execute((err, result) => {
                                 if (err){
-                                    console.log(err);
+                                    // console.log(err);
                                 }
                                 if (result){
                                     // console.log(result);
@@ -588,7 +588,7 @@ Meteor.methods({
                         if (bulkValidatorRecords.length > 0){
                             bulkValidatorRecords.execute((err, result) => {
                                 if (err){
-                                    console.log(err);
+                                    // console.log(err);
                                 }
                             });
                         }
@@ -599,7 +599,7 @@ Meteor.methods({
                         if (bulkVPHistory.length > 0){
                             bulkVPHistory.execute((err, result) => {
                                 if (err){
-                                    console.log(err);
+                                    // console.log(err);
                                 }
                             });
                         }
@@ -607,7 +607,7 @@ Meteor.methods({
                         if (bulkTransations.length > 0){
                             bulkTransations.execute((err, result) => {
                                 if (err){
-                                    console.log(err);
+                                    // console.log(err);
                                 }
                             });
                         }
