@@ -37,7 +37,7 @@ Meteor.methods({
             }});
         }
         catch(e){
-            console.log(e);
+            // console.log(e);
         }
     },
     'chain.updateStatus': function(){
@@ -86,7 +86,7 @@ Meteor.methods({
                     chainStates.notBondedTokens = parseInt(bonding.not_bonded_tokens);
                 }
                 catch(e){
-                    console.log(e);
+                    // console.log(e);
                 }
 
                 url = LCD + '/distribution/community_pool';
@@ -104,7 +104,7 @@ Meteor.methods({
                     }
                 }
                 catch (e){
-                    console.log(e)
+                    // console.log(e)
                 }
 
                 url = LCD + '/minting/inflation';
@@ -116,7 +116,7 @@ Meteor.methods({
                     }
                 }
                 catch(e){
-                    console.log(e);
+                    // console.log(e);
                 }
 
                 url = LCD + '/minting/annual-provisions';
@@ -128,7 +128,7 @@ Meteor.methods({
                     }
                 }
                 catch(e){
-                    console.log(e);
+                    // console.log(e);
                 }
 
                 ChainStates.insert(chainStates);
@@ -141,7 +141,7 @@ Meteor.methods({
             return chain.latestBlockHeight;
         }
         catch (e){
-            console.log(e);
+            // console.log(e);
             return "Error getting chain status.";
         }
     },

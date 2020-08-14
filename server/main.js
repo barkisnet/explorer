@@ -38,7 +38,7 @@ updateBlock = () => {
             console.log("updateBlocks: "+error);
         }
         else{
-            console.log("updateBlocks: "+result);
+            // console.log("updateBlocks: "+result);
         }
     })
 }
@@ -57,7 +57,7 @@ getProposals = () => {
             console.log("get proposal: "+ error);
         }
         if (result){
-            console.log("get proposal: "+result);
+            // console.log("get proposal: "+result);
         }
     });
 }
@@ -68,7 +68,7 @@ getProposalsResults = () => {
             console.log("get proposals result: "+error);
         }
         if (result){
-            console.log("get proposals result: "+result);
+            // console.log("get proposals result: "+result);
         }
     });
 }
@@ -79,7 +79,7 @@ updateMissedBlocks = () => {
             console.log("missed blocks error: "+ error)
         }
         if (result){
-            console.log("missed blocks ok:" + result);
+            // console.log("missed blocks ok:" + result);
         }
     });
 /*
@@ -100,7 +100,7 @@ getDelegations = () => {
             console.log("get delegations error: "+ error)
         }
         else{
-            console.log("get delegations ok: "+ result)
+            // console.log("get delegations ok: "+ result)
         }
     });
 }
@@ -112,7 +112,7 @@ aggregateMinutely = () =>{
             console.log("aggregate minutely block time error: "+error)
         }
         else{
-            console.log("aggregate minutely block time ok: "+result)
+            // console.log("aggregate minutely block time ok: "+result)
         }
     });
 
@@ -121,7 +121,7 @@ aggregateMinutely = () =>{
             console.log("get coin stats error: "+error);
         }
         else{
-            console.log("get coin stats ok: "+result)
+            // console.log("get coin stats ok: "+result)
         }
     });
 }
@@ -133,7 +133,7 @@ aggregateHourly = () =>{
             console.log("aggregate hourly block time error: "+error)
         }
         else{
-            console.log("aggregate hourly block time ok: "+result)
+            // console.log("aggregate hourly block time ok: "+result)
         }
     });
 }
@@ -145,7 +145,7 @@ aggregateDaily = () =>{
             console.log("aggregate daily block time error: "+error)
         }
         else{
-            console.log("aggregate daily block time ok: "+result)
+            // console.log("aggregate daily block time ok: "+result)
         }
     });
 
@@ -154,7 +154,7 @@ aggregateDaily = () =>{
             console.log("aggregate validators block time error:"+ error)
         }
         else {
-            console.log("aggregate validators block time ok:"+ result);
+            // console.log("aggregate validators block time ok:"+ result);
         }
     })
 }

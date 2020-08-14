@@ -31,7 +31,7 @@ const getBlockStats = (startHeight, latestHeight) => {
     Analytics.find(cond, options).forEach((block) => {
         if (!blockStats[block.height]) {
             blockStats[block.height] = { height: block.height };
-            console.log(`block ${block.height} does not have an entry`);
+            // console.log(`block ${block.height} does not have an entry`);
         }
         _.assign(blockStats[block.height], {
             precommits: block.precommits,
@@ -65,7 +65,7 @@ Meteor.methods({
             try {
                 let startTime = Date.now();
                 COUNTMISSEDBLOCKS = true;
-                console.log('calulate missed blocks count');
+                // console.log('calulate missed blocks count');
                 this.unblock();
                 let validators = Validators.find({}).fetch();
                 let latestHeight = Meteor.call('blocks.getCurrentHeight');
@@ -182,7 +182,7 @@ Meteor.methods({
         // console.log("ValidatorRecords.calculateMissedBlocks: "+COUNTMISSEDBLOCKS);
         if (!COUNTMISSEDBLOCKSSTATS){
             COUNTMISSEDBLOCKSSTATS = true;
-            console.log('calulate missed blocks stats');
+            // console.log('calulate missed blocks stats');
             this.unblock();
             let validators = Validators.find({}).fetch();
             let latestHeight = Meteor.call('blocks.getCurrentHeight');
