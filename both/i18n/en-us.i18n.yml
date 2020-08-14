@@ -25,7 +25,7 @@ common:
     retry: 'Retry'
 navbar:
     siteName: 'Barkisnet Explorer'
-    version: '2.1.1'
+    version: '2.2.0'
     validators: 'Validators'
     blocks: 'Blocks'
     transactions: 'Transactions'
